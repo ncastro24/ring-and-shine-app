@@ -17,6 +17,10 @@
 		C36535552DAF4503005A246E /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36535542DAF4503005A246E /* Alarm.swift */; };
 		C36535572DAF47A2005A246E /* AlarmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36535562DAF47A2005A246E /* AlarmManager.swift */; };
 		C36535592DAF4A4C005A246E /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36535582DAF4A4C005A246E /* Settings.swift */; };
+		C365355B2DAF4B09005A246E /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C365355A2DAF4B09005A246E /* HapticManager.swift */; };
+		C365355E2DAF4BC6005A246E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C365355D2DAF4BC6005A246E /* SettingsView.swift */; };
+		C36535602DAF4F51005A246E /* EditAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C365355F2DAF4F51005A246E /* EditAlarmView.swift */; };
+		C36535622DAF5AC1005A246E /* AlarmDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36535612DAF5AC1005A246E /* AlarmDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +54,10 @@
 		C36535542DAF4503005A246E /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		C36535562DAF47A2005A246E /* AlarmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmManager.swift; sourceTree = "<group>"; };
 		C36535582DAF4A4C005A246E /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		C365355A2DAF4B09005A246E /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
+		C365355D2DAF4BC6005A246E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		C365355F2DAF4F51005A246E /* EditAlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAlarmView.swift; sourceTree = "<group>"; };
+		C36535612DAF5AC1005A246E /* AlarmDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,13 +108,14 @@
 		C36535292DAF41F8005A246E /* RingAndShine */ = {
 			isa = PBXGroup;
 			children = (
+				C365355C2DAF4BB6005A246E /* Views */,
 				C365352A2DAF41F8005A246E /* RingAndShineApp.swift */,
-				C365352C2DAF41F8005A246E /* ContentView.swift */,
-				C365352E2DAF41FC005A246E /* Assets.xcassets */,
-				C36535302DAF41FC005A246E /* Preview Content */,
 				C36535542DAF4503005A246E /* Alarm.swift */,
 				C36535562DAF47A2005A246E /* AlarmManager.swift */,
 				C36535582DAF4A4C005A246E /* Settings.swift */,
+				C365355A2DAF4B09005A246E /* HapticManager.swift */,
+				C365352E2DAF41FC005A246E /* Assets.xcassets */,
+				C36535302DAF41FC005A246E /* Preview Content */,
 			);
 			path = RingAndShine;
 			sourceTree = "<group>";
@@ -134,6 +143,17 @@
 				C36535472DAF41FC005A246E /* RingAndShineUITestsLaunchTests.swift */,
 			);
 			path = RingAndShineUITests;
+			sourceTree = "<group>";
+		};
+		C365355C2DAF4BB6005A246E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C365352C2DAF41F8005A246E /* ContentView.swift */,
+				C365355D2DAF4BC6005A246E /* SettingsView.swift */,
+				C365355F2DAF4F51005A246E /* EditAlarmView.swift */,
+				C36535612DAF5AC1005A246E /* AlarmDetailView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,10 +286,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C365355E2DAF4BC6005A246E /* SettingsView.swift in Sources */,
 				C365352D2DAF41F8005A246E /* ContentView.swift in Sources */,
 				C36535572DAF47A2005A246E /* AlarmManager.swift in Sources */,
 				C365352B2DAF41F8005A246E /* RingAndShineApp.swift in Sources */,
+				C36535602DAF4F51005A246E /* EditAlarmView.swift in Sources */,
+				C36535622DAF5AC1005A246E /* AlarmDetailView.swift in Sources */,
 				C36535552DAF4503005A246E /* Alarm.swift in Sources */,
+				C365355B2DAF4B09005A246E /* HapticManager.swift in Sources */,
 				C36535592DAF4A4C005A246E /* Settings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

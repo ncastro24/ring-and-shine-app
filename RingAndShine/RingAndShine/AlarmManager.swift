@@ -24,4 +24,8 @@ class AlarmManager: ObservableObject {
     func deleteAlarm(at offsets: IndexSet) {
         alarms.remove(atOffsets: offsets)
     }
+    
+    func testConnection() -> Date{
+        return Date()
+    }
 }
