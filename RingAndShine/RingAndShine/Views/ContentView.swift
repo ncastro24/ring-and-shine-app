@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showWarning = false
+    @Environment (\.scenePhase) var scenePhase
     @StateObject private var alarmManager = AlarmManager()
     @StateObject private var settings = Settings()
     
@@ -23,18 +25,77 @@ struct ContentView: View {
     @State private var showingDeleteConfirmation = false
     @State private var itemsToDelete: IndexSet?
     
+    var filteredAndSortedAlarms: [Alarm] {
+        var filtered = alarmManager.alarms
+        return filtered
+    }
+    
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.black.ignoresSafeArea()
-                
-                VStack {
-
+                List(selection: $editSelection){
+                    ForEach(filteredAndSortedAlarms) { alarm in
+                        alarmRow(alarm:alarm)
+                            .listRowBackground(Color.black)
+                            .contextMenu {
+                                Button("Enable/Diable") {
+                                    var updated = alarm
+                                    updated.isEnabled.toggle()
+                                    alarmManager.updateAlarm(alarm:updated)
+                                    HapticManager.triggerSelectionHaptic()
+                                }
+                                Button("Delete", role: .destructive) {
+                                    if let index = alarmManager.alarms.firstIndex(where: {$0.id == alarm.id}) {
+                                        alarmManager.alarms.remove(at: index)
+                                        HapticManager.triggerSelectionHaptic()
+                                    }
+                                }
+                            }
+                    }
+                    .onDelete(perform: onDelete)
                 }
-                NavigationLink(destination: detailAlarm.map {AlarmDetailView(alarm: $0)}, isActive: Binding(get: {detailAlarm != nil}, set: {if !$0 {detailAlarm = nil}})) {
+                .environment(\.editMode, $editMode)
+                .listStyle(.insetGrouped)
+                .scrollContentBackground(.hidden)
+                .refreshable {
+                    HapticManager.triggerSuccessHaptic()
+                }
+                
+                .navigationTitle("Alarms")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        if editMode == .inactive {
+                            EditButton()
+                                .foregroundColor(.white)
+                        } else {
+                            Button("Done") {
+                                editMode = .inactive
+                            }
+                            .foregroundColor(.white)
+                        }
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Menu {
+                            Button("Add New Alarm") {
+                                alarmManager.addAlarm()
+                                HapticManager.triggerSelectionHaptic()
+                            }
+                            Button("Settings") {
+                                showingSettings = true
+                            }
+                        } label: {
+                            Image(systemName: "line.3.horizontal.decrease.circle")
+                                .foregroundColor(.white)
+                        }
+                    }
+                }
+                
+                //Color.black.ignoresSafeArea(.all)
+                /*NavigationLink(destination: detailAlarm.map {AlarmDetailView(alarm: $0)}, isActive: Binding(get: {detailAlarm != nil}, set: {if !$0 {detailAlarm = nil}})) {
                     EmptyView()
                 }
-                .hidden()
+                .hidden()*/
             }
             .sheet(item: $selectedAlarm) { alarm in
                 EditAlarmView(alarmManager: alarmManager, alarm: alarm)}
@@ -50,16 +111,22 @@ struct ContentView: View {
                     showingOnboarding = true
                 }
             }
-            .fullScreenCover(isPresented: $showingOnboarding){
-                OnboardingView(isPresented: $showingOnboarding)
+            .onChange(of: scenePhase) {
+                if scenePhase == .active {
+                    NotificationManager.checkAuthorization { authorized in
+                    showWarning = !authorized}
+                }
             }
+            /*.fullScreenCover(isPresented: $showingOnboarding){
+                OnboardingView(isPresented: $showingOnboarding)
+            }*/
             .alert(isPresented: $showingDeleteConfirmation) {
-                Alert(title: Text("Delete Alarms"), message: Text("Are you sure you want to delete these alarms?"), primarybutton: .destructive(Text("Delete")) {
+                Alert(title: Text("Delete Alarms"), message: Text("Are you sure you want to delete these alarms?"), primaryButton: .destructive(Text("Delete")) {
                     if let offsets = itemsToDelete {
                         alarmManager.deleteAlarm(at: offsets)
                         itemsToDelete = nil
                     }
-                })
+                }, secondaryButton: .cancel())
             }
         }
         .preferredColorScheme(.dark)
