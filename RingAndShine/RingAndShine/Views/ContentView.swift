@@ -26,7 +26,7 @@ struct ContentView: View {
     @State private var itemsToDelete: IndexSet?
     
     var filteredAndSortedAlarms: [Alarm] {
-        var filtered = alarmManager.alarms
+        let filtered = alarmManager.alarms
         return filtered
     }
     

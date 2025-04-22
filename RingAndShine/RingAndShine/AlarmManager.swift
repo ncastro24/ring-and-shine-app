@@ -25,7 +25,10 @@ class AlarmManager: ObservableObject {
         alarms.remove(atOffsets: offsets)
     }
     
-    func testConnection() -> Date{
-        return Date()
+    func testConnection(){
+        let dateFormatter = DateFormatter()
+
+        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
+        print(dateFormatter.string(from: Date()))
     }
 }

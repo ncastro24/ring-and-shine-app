@@ -11,6 +11,7 @@ struct SettingsView: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject var settings: Settings
     @ObservedObject var alarmManager: AlarmManager
+    @State private var isPressed = false
     var body: some View {
         NavigationStack {
             Form {
@@ -19,12 +20,17 @@ struct SettingsView: View {
                         .tint(.green)
                 }
                 Section(header: Text("Connection").foregroundColor(.white)) {
-                    Button {
+                    Button ("Test Connection to Pi") { action: do {
+                        self.isPressed.toggle()
                         alarmManager.testConnection()
+                        
                         HapticManager.triggerSuccessHaptic()
-                    } label: {
-                        Text("Test Connection to Pi").foregroundStyle(.green)
+                        NotificationManager.scheduleNotification(seconds: 1, title: "Test Message", body: "This is a test notification")
+                        }
                     }
+                    .scaleEffect(isPressed ? 1.1 : 1.0)
+                    .animation(.easeInOut, value: isPressed)
+                    .foregroundColor(.green)
                 }
             }
             .navigationTitle("Settings")
