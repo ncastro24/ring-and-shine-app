@@ -25,6 +25,7 @@
 		C38D74FB2DB5ADCA00D8785C /* bell.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C38D74FA2DB5ADCA00D8785C /* bell.mp3 */; };
 		C38D74FD2DB5ADF900D8785C /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38D74FC2DB5ADF900D8785C /* AudioManager.swift */; };
 		C38D75012DB5B16A00D8785C /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38D75002DB5B16A00D8785C /* NotificationManager.swift */; };
+		C38D9E092DB88F9E00EBD54A /* AddAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38D9E082DB88F9E00EBD54A /* AddAlarmView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		C38D74FC2DB5ADF900D8785C /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		C38D74FF2DB5AEB000D8785C /* bell.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bell.mp3; sourceTree = "<group>"; };
 		C38D75002DB5B16A00D8785C /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		C38D9E082DB88F9E00EBD54A /* AddAlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlarmView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 				C365355F2DAF4F51005A246E /* EditAlarmView.swift */,
 				C36535612DAF5AC1005A246E /* AlarmDetailView.swift */,
 				C38D74F62DB59CCC00D8785C /* ContentView2.swift */,
+				C38D9E082DB88F9E00EBD54A /* AddAlarmView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 			files = (
 				C365355E2DAF4BC6005A246E /* SettingsView.swift in Sources */,
 				C365352D2DAF41F8005A246E /* ContentView.swift in Sources */,
+				C38D9E092DB88F9E00EBD54A /* AddAlarmView.swift in Sources */,
 				C36535572DAF47A2005A246E /* AlarmManager.swift in Sources */,
 				C38D74F72DB59CCC00D8785C /* ContentView2.swift in Sources */,
 				C365352B2DAF41F8005A246E /* RingAndShineApp.swift in Sources */,

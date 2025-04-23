@@ -11,8 +11,8 @@ import SwiftUI
 class AlarmManager: ObservableObject {
     @Published var alarms: [Alarm] = []
     
-    func addAlarm(){
-        let newAlarm = Alarm(time: Date(), label: "New Alarm", isEnabled: true)
+    func addAlarm(at time: Date){
+        let newAlarm = Alarm(time: time, label: "New Alarm", isEnabled: true)
         alarms.append(newAlarm)
     }
     
