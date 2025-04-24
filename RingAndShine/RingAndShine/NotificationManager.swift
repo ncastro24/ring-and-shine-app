@@ -10,54 +10,51 @@ import UserNotifications
 
 class NotificationManager {
   
-  static func checkAuthorization(completion: @escaping (Bool) -> Void) {
-    let notificationCenter = UNUserNotificationCenter.current()
-    notificationCenter.getNotificationSettings { settings in
-      switch settings.authorizationStatus {
-      case .authorized:
-        completion(true)
-      case .notDetermined:
-        notificationCenter.requestAuthorization(options: [.alert, .badge, .sound]) { allowed, error in
-          completion(allowed)
+    static func checkAuthorization(completion: @escaping (Bool) -> Void) {
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.getNotificationSettings { settings in
+            switch settings.authorizationStatus {
+            case .authorized:
+                completion(true)
+            case .notDetermined:
+                notificationCenter.requestAuthorization(options: [.alert, .badge, .sound]) { allowed, _ in
+                    completion(allowed)
+                }
+            default:
+                completion(false)
+            }
         }
-      default:
-        completion(false)
-      }
     }
-  }
-  
-  static func scheduleNotification(seconds: TimeInterval, title: String, body: String) {
-      let notificationCenter = UNUserNotificationCenter.current()
-    // remove all notification
-      notificationCenter.removeAllDeliveredNotifications()
-      notificationCenter.removeAllPendingNotificationRequests()
-    // set up content
-      let content = UNMutableNotificationContent()
-      content.title = title
-      content.body = body
-      content.sound = .default
-      content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: AudioSounds.bell.resource))
-      
-      var dateComponents = DateComponents()
-          dateComponents.calendar = Calendar.current
 
-          // For example, April 23, 2025 at 9:00 AM
-          dateComponents.year = 2025
-          dateComponents.month = 4
-          dateComponents.day = 23
-          dateComponents.hour = 9
-          dateComponents.minute = 0
-      
-      
-    // trigger
-      //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: seconds, repeats: false)
-      let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-    // create request
-      let request = UNNotificationRequest(identifier: "my-notification", content: content, trigger: trigger)
-    // add the notification to the center
-      notificationCenter.add(request)
-    
-      print("Notification works")
-      print(dateComponents)
-  }
+    static func scheduleNotification(for alarm: Alarm) {
+        guard alarm.isEnabled else { return } // Only notify if enabled
+
+        let content = UNMutableNotificationContent()
+        content.title = "Alarm"
+        content.body = alarm.label
+        content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: AudioSounds.bell.resource))
+
+        // Extract date components from alarm time
+        let components = Calendar.current.dateComponents([.hour, .minute], from: alarm.time)
+
+        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+
+        let request = UNNotificationRequest(
+            identifier: alarm.id.uuidString,
+            content: content,
+            trigger: trigger
+        )
+
+        UNUserNotificationCenter.current().add(request) { error in
+            if let error = error {
+                print("Error scheduling notification: \(error.localizedDescription)")
+            } else {
+                print("Notification scheduled for: \(components)")
+            }
+        }
+    }
+
+    static func cancelNotification(for alarm: Alarm) {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [alarm.id.uuidString])
+    }
 }

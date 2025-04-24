@@ -11,14 +11,36 @@ import SwiftUI
 class AlarmManager: ObservableObject {
     @Published var alarms: [Alarm] = []
     
-    func addAlarm(at time: Date){
-        let newAlarm = Alarm(time: time, label: "New Alarm", isEnabled: true)
+    func addAlarm(at time: Date) {
+        // round to the nearest minute to prevent millisecond mismatches
+        let calendar = Calendar.current
+        let roundedTime = calendar.date(from: calendar.dateComponents([.hour, .minute], from: time))!
+
+        // check for existing alarm at same time
+        if alarms.contains(where: {
+            let existingTime = calendar.date(from: calendar.dateComponents([.hour, .minute], from: $0.time))!
+            return existingTime == roundedTime
+        }) {
+            print("Alarm at this time already exists.")
+            return
+        }
+
+        let newAlarm = Alarm(time: roundedTime, label: "New Alarm", isEnabled: true)
         alarms.append(newAlarm)
+        NotificationManager.scheduleNotification(for: newAlarm)
     }
+
     
     func updateAlarm(alarm: Alarm) {
-        guard let index = alarms.firstIndex(where: {$0.id == alarm.id}) else {return}
-        alarms[index] = alarm
+        if let index = alarms.firstIndex(where: { $0.id == alarm.id }) {
+            alarms[index] = alarm
+
+            NotificationManager.cancelNotification(for: alarm)
+
+            if alarm.isEnabled {
+                NotificationManager.scheduleNotification(for: alarm)
+            }
+        }
     }
     
     func deleteAlarm(at offsets: IndexSet) {

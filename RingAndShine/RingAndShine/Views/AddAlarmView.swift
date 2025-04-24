@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct AddAlarmView: View {
+    @ObservedObject var alarmManager: AlarmManager
     @State private var selectedTime: Date = Date()
     @State private var alarms: [Alarm] = []
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         NavigationView {
@@ -20,7 +22,8 @@ struct AddAlarmView: View {
                     .padding()
                 
                 Button(action: {
-                    addAlarm(at: selectedTime)
+                    alarmManager.addAlarm(at: selectedTime)
+                    dismiss()
                 }) {
                     Text("Add Alarm")
                         .font(.headline)
@@ -45,8 +48,15 @@ struct AddAlarmView: View {
             .navigationTitle("Alarms")
         }
     }
+    
+    func timeString(from date: Date) -> String {
+            let formatter = DateFormatter()
+            formatter.timeStyle = .short
+            return formatter.string(from: date)
+        }
+    
 }
 
 #Preview {
-    AddAlarmView()
+    AddAlarmView(alarmManager: AlarmManager())
 }

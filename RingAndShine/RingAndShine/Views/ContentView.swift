@@ -12,6 +12,7 @@ struct ContentView: View {
     @Environment (\.scenePhase) var scenePhase
     @StateObject private var alarmManager = AlarmManager()
     @StateObject private var settings = Settings()
+    //@StateObject private var alarmview = AddAlarmView()
     
     @State private var selectedAlarm: Alarm? = nil
     @State private var detailAlarm: Alarm? = nil
@@ -64,7 +65,7 @@ struct ContentView: View {
                 .navigationTitle("Alarms")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
+                    /*ToolbarItem(placement: .navigationBarLeading) {
                         if editMode == .inactive {
                             EditButton()
                                 .foregroundColor(.white)
@@ -74,11 +75,12 @@ struct ContentView: View {
                             }
                             .foregroundColor(.white)
                         }
-                    }
+                    }*/
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Menu {
                             Button("Add New Alarm") {
-                                alarmManager.addAlarm()
+                                //alarmManager.addAlarm()
+                                showingAddAlarm = true
                                 HapticManager.triggerSelectionHaptic()
                             }
                             Button("Settings") {
@@ -102,10 +104,13 @@ struct ContentView: View {
             .fullScreenCover(isPresented: $showingSettings) {
                 SettingsView(settings: settings, alarmManager: alarmManager)
             }
+            .fullScreenCover(isPresented: $showingAddAlarm) {
+                AddAlarmView(alarmManager: alarmManager)
+            }
             .onAppear{
-                if alarmManager.alarms.isEmpty {
+                /*if alarmManager.alarms.isEmpty {
                     alarmManager.addAlarm()
-                }
+                }*/
                 if !hasSeenOnboarding {
                     hasSeenOnboarding.toggle()
                     showingOnboarding = true
@@ -134,6 +139,7 @@ struct ContentView: View {
     
     @State private var showingOnboarding = false
     @State private var showingSettings = false
+    @State private var showingAddAlarm = false
     @State private var editSelection: Set<Alarm.ID> = []
     
     private func onDelete(offsets: IndexSet) {

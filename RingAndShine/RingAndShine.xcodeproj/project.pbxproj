@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C346CA7F2DB9D9BA0077F624 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C346CA7E2DB9D9BA0077F624 /* AppDelegate.swift */; };
 		C365352B2DAF41F8005A246E /* RingAndShineApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C365352A2DAF41F8005A246E /* RingAndShineApp.swift */; };
 		C365352D2DAF41F8005A246E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C365352C2DAF41F8005A246E /* ContentView.swift */; };
 		C365352F2DAF41FC005A246E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C365352E2DAF41FC005A246E /* Assets.xcassets */; };
@@ -46,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C346CA7E2DB9D9BA0077F624 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C36535272DAF41F8005A246E /* RingAndShine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RingAndShine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C365352A2DAF41F8005A246E /* RingAndShineApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingAndShineApp.swift; sourceTree = "<group>"; };
 		C365352C2DAF41F8005A246E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				C365355A2DAF4B09005A246E /* HapticManager.swift */,
 				C38D74FC2DB5ADF900D8785C /* AudioManager.swift */,
 				C38D75002DB5B16A00D8785C /* NotificationManager.swift */,
+				C346CA7E2DB9D9BA0077F624 /* AppDelegate.swift */,
 				C38D74FA2DB5ADCA00D8785C /* bell.mp3 */,
 				C365352E2DAF41FC005A246E /* Assets.xcassets */,
 				C36535302DAF41FC005A246E /* Preview Content */,
@@ -316,6 +319,7 @@
 				C365352D2DAF41F8005A246E /* ContentView.swift in Sources */,
 				C38D9E092DB88F9E00EBD54A /* AddAlarmView.swift in Sources */,
 				C36535572DAF47A2005A246E /* AlarmManager.swift in Sources */,
+				C346CA7F2DB9D9BA0077F624 /* AppDelegate.swift in Sources */,
 				C38D74F72DB59CCC00D8785C /* ContentView2.swift in Sources */,
 				C365352B2DAF41F8005A246E /* RingAndShineApp.swift in Sources */,
 				C36535602DAF4F51005A246E /* EditAlarmView.swift in Sources */,

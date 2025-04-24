@@ -27,7 +27,7 @@ struct SettingsView: View {
                         alarmManager.testConnection()
                         
                         HapticManager.triggerSuccessHaptic()
-                        NotificationManager.scheduleNotification(seconds: 5, title: "Test Message", body: "This is a test notification")
+                        /*NotificationManager.scheduleNotification(seconds: 5, title: "Test Message", body: "This is a test notification")*/
                     })
                     .scaleEffect(isPressed ? 1.1 : 1.0)
                     .animation(.easeInOut, value: isPressed)

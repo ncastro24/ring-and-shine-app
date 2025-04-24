@@ -42,9 +42,9 @@ struct ContentView2: View {
                 SettingsView(settings: settings, alarmManager: alarmManager)
             }
             .onAppear{
-                if alarmManager.alarms.isEmpty {
+                /*if alarmManager.alarms.isEmpty {
                     alarmManager.addAlarm()
-                }
+                }*/
                 if !hasSeenOnboarding {
                     hasSeenOnboarding.toggle()
                     showingOnboarding = true
