@@ -7,9 +7,12 @@
 
 import Foundation
 import SwiftUI
+import CocoaMQTT
 
 class AlarmManager: ObservableObject {
     @Published var alarms: [Alarm] = []
+    var lightstatus: [Int : String] = [0: "off", 1: "on"]
+    let mqttClient = CocoaMQTT(clientID: "RingAndShine", host:"raspberrypi", port:1883)
     
     func addAlarm(at time: Date) {
         // round to the nearest minute to prevent millisecond mismatches
@@ -48,9 +51,16 @@ class AlarmManager: ObservableObject {
     }
     
     func testConnection(){
-        let dateFormatter = DateFormatter()
+        mqttClient.connect()
+        print("Connected to mqtt client")
+        //let dateFormatter = DateFormatter()
 
-        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
-        print(dateFormatter.string(from: Date()))
+        //dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
+        //print(dateFormatter.string(from: Date()))
+    }
+    
+    func sendOnMessage(){
+        print("Sending message: ON" )
+        mqttClient.publish("ringandshine/status", withString: "on")
     }
 }
