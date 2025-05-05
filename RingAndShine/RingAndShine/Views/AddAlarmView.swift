@@ -58,5 +58,5 @@ struct AddAlarmView: View {
 }
 
 #Preview {
-    AddAlarmView(alarmManager: AlarmManager())
+    AddAlarmView(alarmManager: AlarmManager.shared)
 }

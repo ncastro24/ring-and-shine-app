@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView2: View {
-    @StateObject private var alarmManager = AlarmManager()
+    @ObservedObject private var alarmManager = AlarmManager.shared
     @StateObject private var settings = Settings()
     
     @State private var selectedAlarm: Alarm? = nil

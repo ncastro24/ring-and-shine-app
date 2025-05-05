@@ -22,6 +22,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
 
         // Show it as an alert with sound
+        AlarmManager.shared.sendOnMessage()
         completionHandler([.banner, .sound])
     }
 }

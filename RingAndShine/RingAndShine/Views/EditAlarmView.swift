@@ -95,5 +95,5 @@ struct EditAlarmView: View {
 }
 
 #Preview {
-    EditAlarmView(alarmManager: AlarmManager(), alarm: Alarm.init(time: Date(), label: "Test", isEnabled: true))
+    EditAlarmView(alarmManager: AlarmManager.shared, alarm: Alarm.init(time: Date(), label: "Test", isEnabled: true))
 }

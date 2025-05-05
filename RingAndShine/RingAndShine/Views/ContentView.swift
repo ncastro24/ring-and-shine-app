@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @State private var showWarning = false
     @Environment (\.scenePhase) var scenePhase
-    @StateObject private var alarmManager = AlarmManager()
+    @ObservedObject private var alarmManager = AlarmManager.shared
     @StateObject private var settings = Settings()
     //@StateObject private var alarmview = AddAlarmView()
     
