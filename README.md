@@ -17,4 +17,9 @@ Features:
 
 [Our presentation (Chapman University only)](https://docs.google.com/presentation/d/1MkAyVf9v6-JepvmVopanJOJ7yBFCqwsbM8PKcG4X6yM/edit?usp=sharing)
 
+Files/Folders:
+
+- cpsc514_main.py : the python file that goes into the raspberry pi. Controls the light on the breadboard and controls the subscriber in our MQTT system. Raspberry pi needs at least Paho installed and imported for this file to run.
+- Ring and Shine : entire project file for the alarm app. Written in Swift and best viewed on Xcode and its iOS 17 simulator. CocoaPods should be installed on the workplace where the program will run. Please open the RingAndShine.xcworkplace file to run the project rather than the RingAndShine.xcodeproj file, as that is the file with the necessary Pods from CocoaMQTT imported. 
+
 
