@@ -9,7 +9,12 @@ Briana Craig, Hazel Caruthers, Nayeli Castro, Tiffany Le
 
 Features:
 
-- Alarm that goes off at exact phone time
+- Alarm that goes off at exact phone time with iOS notification and sound
 - Preventative measures for duplicate alarms
 - 24 and 12 hour time
-- Simple messaging to MQTT broker
+- Lighting system through raspberry pi 5 and breadboard: currently, only function is to turn on when the alarm goes off -- plans to add more functionality
+- Simple publishing and subscribing to a MQTT broker -- we use Paho (subscriber - python), CocoaMQTT (publisher - iOS), and  Mosquitto (broker - raspberry pi)
+
+[Our presentation (Chapman University only)](https://docs.google.com/presentation/d/1MkAyVf9v6-JepvmVopanJOJ7yBFCqwsbM8PKcG4X6yM/edit?usp=sharing)
+
+
